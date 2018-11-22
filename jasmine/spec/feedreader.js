@@ -31,7 +31,7 @@ $(function() {
          * in the allFeeds array-object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-        it('URLs are defined', function () {
+        it('URLs are defined with values', function () {
             for (const feedObj of allFeeds) {
                 expect(feedObj.url).toBeDefined();
                 expect(feedObj.url.length).not.toBe(0);
@@ -43,6 +43,12 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('Feed names defined with values', function () {
+            for (const feedObj of allFeeds) {
+                expect(feedObj.name).toBeDefined();
+                expect(feedObj.name.length).not.toBe(0);
+            }
+        })
     });
 
 
