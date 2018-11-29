@@ -96,17 +96,35 @@ $(function() {
         });
 
         it('there is one or more initial entries', function (done) {
-            const feedContainer = document.querySelector('.feed').children;
+            const feedContainer = document.querySelector('.feed').querySelectorAll('.entry');
             expect(feedContainer.length > 0).toBe(true);
             done();
         });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
+    describe('New Feed Selection', function () {
+        let firstLoadOfFeed;
+        let secondLoadOfFeed;
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
-         */
+         */  
+        beforeEach(function (done) {
+            loadFeed(0, () => {
+                firstLoadOfFeed = document.querySelector('.feed').querySelector('.entry');
+            });
+            
+            loadFeed(1, () => {
+                secondLoadOfFeed = document.querySelector('.feed').querySelector('.entry');
+                done();
+            });
+        });
+
+        it('New content when new feed is loaded', function (done) {
+            expect(firstLoadOfFeed).not.toBe(secondLoadOfFeed);
+            done();
+        });
+    });
     
 }());
